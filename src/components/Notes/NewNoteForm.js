@@ -70,7 +70,7 @@ const NewNoteForm = () => {
     try {
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('dwnwfmlsw', 'Image_upload');
+      formData.append('dpzh3o2pb', 'Img_Upload');
       
       const response = await axios.post(
         'https://api.cloudinary.com/v1_1/your-cloud-name/image/upload', 

@@ -30,8 +30,8 @@ const ImageUploader = ({ onImageUploaded, userId }) => {
     setProgress(0);
     
     const uploadOptions = {
-      cloudName: 'dwnwfmlsw', // Replace with your Cloudinary cloud name
-      uploadPreset: 'Image_upload', // Replace with your upload preset
+      cloudName: 'dpzh3o2pb', // Replace with your Cloudinary cloud name
+      uploadPreset: 'Img_Upload', // Replace with your upload preset
       folder: `images/${userId || 'anonymous'}`,
       multiple: false,
       sources: ['local', 'camera', 'url'],
