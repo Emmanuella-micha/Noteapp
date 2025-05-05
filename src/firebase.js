@@ -2,8 +2,8 @@
 
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth"; // ✅ Added for authentication
+import { getFirestore, enableIndexedDbPersistence } from "firebase/firestore";
+import { getAuth, setPersistence, browserLocalPersistence } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAjjqqoO78vzq1_uOcVKI33VQF_ik4G5zs",
@@ -17,9 +17,25 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app); // Optional
+const analytics = getAnalytics(app);
+
+// Initialize Firestore
 const db = getFirestore(app);
-const auth = getAuth(app); // ✅ Auth instance
+
+// Initialize Auth with local persistence
+const auth = getAuth(app);
+
+// Set up persistence for authentication
+setPersistence(auth, browserLocalPersistence)
+  .catch((error) => {
+    console.error("Error setting auth persistence:", error);
+  });
+
+// Enable offline persistence for Firestore
+enableIndexedDbPersistence(db)
+  .catch((error) => {
+    console.error("Error enabling Firestore persistence:", error.code);
+  });
 
 // Export instances
-export { db, auth };
+export { db, auth, analytics };
